@@ -242,17 +242,17 @@ android {
         }
     }
 
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            output.processManifest.doLast {
-                def abiVersion = variant.productFlavors.get(0).abiVersionCode
-                String manifestPath = "$manifestOutputDirectory/AndroidManifest.xml"
-                def manifestContent = file(manifestPath).getText()
-                manifestContent = manifestContent.replace(String.format('android:versionCode="%d"', defaultConfig.versionCode), String.format('android:versionCode="%s"', defaultConfig.versionCode * 10 + abiVersion))
-                file(manifestPath).write(manifestContent)
-            }
-        }
-    }
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            output.processManifest.doLast {
+//                def abiVersion = variant.productFlavors.get(0).abiVersionCode
+//                String manifestPath = "TMessagesProj/build/intermediates/merged_manifests/afatDebug/AndroidManifest.xml"
+//                def manifestContent = file(manifestPath).getText()
+//                manifestContent = manifestContent.replace(String.format('android:versionCode="%d"', defaultConfig.versionCode), String.format('android:versionCode="%s"', defaultConfig.versionCode * 10 + abiVersion))
+//                file(manifestPath).write(manifestContent)
+//            }
+//        }
+//    }
 
     variantFilter { variant ->
         def names = variant.flavors*.name
